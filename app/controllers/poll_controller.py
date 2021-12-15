@@ -3,6 +3,7 @@ from fastapi import APIRouter, status, Depends
 
 from app.models.poll import PollModel
 from app.services.poll_service import PollService as service_poll
+from app.repository.mongo_api import MongoAPI
 
 router = APIRouter()
 
