@@ -3,8 +3,6 @@ from fastapi import APIRouter, status, Depends
 
 from app.models.poll import PollModel
 from app.services.poll_service import PollService as service_poll
-from app.repository.mongo_api import MongoAPI
-
 
 router = APIRouter()
 
@@ -16,13 +14,7 @@ router = APIRouter()
             )
 async def get_poll():
     """Handle polls."""
-    polls = MongoAPI("polls").read()
-    answers = MongoAPI("answers").read()
-    for poll in polls:
-        for answer in answers:
-            if answer['poll_id'] == poll['_id']:
-                poll['answers'] = answer
-    return polls
+    return service_poll.get_polls()
 
 
 @router.post("/create",
@@ -32,7 +24,7 @@ async def get_poll():
              )
 async def post_poll(poll):
     """post polls."""
-    return MongoAPI("polls").write({"question": poll})
+    return service_poll.add_poll(poll)
 
 
 @router.post("/answer",
@@ -42,5 +34,4 @@ async def post_poll(poll):
              )
 async def post_answer(poll_id, answer):
     """post answers for polls."""
-    data = {"poll_id": poll_id, "answer": answer}
-    return MongoAPI("answers").write(data)
+    return service_poll.add_answer(poll_id, answer)
