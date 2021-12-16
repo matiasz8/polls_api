@@ -4,9 +4,9 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "8000:8000"
     volumes:
-      - .:/app
+      - ./app:/code/app
   db:
     image: mongo:4.4
     ports:
