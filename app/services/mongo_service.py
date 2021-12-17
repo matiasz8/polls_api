@@ -17,10 +17,9 @@ class MongoAPI:
     def find_byid(self, id):
         return self.collection.find_one({"_id" : ObjectId(id)})
 
-    def write(self, data):
+    def write(self, new_document):
         try:
-            new_document = data
-            new_document["CreatedDate"] = datetime.today()
+            new_document["created_date"] = datetime.today()
             result = self.collection.insert_one(new_document)
             return str(result.inserted_id)
         except Exception as ex:
