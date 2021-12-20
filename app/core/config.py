@@ -14,3 +14,5 @@ IS_DEBUG: bool = _config("IS_DEBUG", cast=bool, default=True)
 
 # ENV
 ENV: str = _config("ENV", cast=str, default="")
+MONGO_HOST: str = _config("MONGO_HOST", cast=str, default="db")
+MONGO_DB: str = _config("MONGO_DB", cast=str, default="pools")
