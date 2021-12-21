@@ -1,4 +1,4 @@
-pymongo==3.10.1
+pymongo
 fastapi
 uvicorn
 pyyaml

@@ -32,7 +32,10 @@ class PollRepository:
         for poll in polls:
             for answer in answers:
                 if answer['poll_id'] == poll['_id']:
-                    poll['answers'] = answer
+                    if "answers" not in poll:
+                        poll["answers"] = [answer]
+                    else:
+                        poll["answers"].append(answer)
         return polls
 
     def create_poll(self, data: PollModel) -> str:

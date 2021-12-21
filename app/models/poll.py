@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, validator, Field
 from bson.objectid import ObjectId as BsonObjectId
-from typing import Optional
+from typing import Optional, List
 
 
 class PydanticObjectId(BsonObjectId):
@@ -25,6 +25,10 @@ class AnswerModel(BaseModel):  # type: ignore
 class AnswerResponseModel(AnswerModel):  # type: ignore
     _id: PydanticObjectId
     created_date: datetime
+
+
+class AnswerResponseListModel(BaseModel):  # type: ignore
+    __root__: List[AnswerResponseModel]
 
 
 class PollModel(BaseModel):  # type: ignore
