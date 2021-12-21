@@ -4,3 +4,5 @@ uvicorn
 pyyaml
 pytest
 responses
+factory-boy
+pytest-mock

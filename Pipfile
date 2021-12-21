@@ -10,6 +10,9 @@ pyyaml = "*"
 pytest = "*"
 pre-commit = "*"
 responses = "*"
+factory-boy = "*"
+pytest-mock = "*"
+pymongo = "*"
 
 [dev-packages]
 
