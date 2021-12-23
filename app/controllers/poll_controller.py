@@ -1,7 +1,6 @@
-import json
-from fastapi import APIRouter, status, Depends
+from fastapi import APIRouter, status
 
-from app.models.poll import PollListModel, PollModel, AnswerModel
+from app.models.poll import PollListModel, PollModel
 from app.services.poll_service import PollService as service_poll
 
 
@@ -26,13 +25,3 @@ async def get_poll() -> PollListModel:
 async def post_poll(question: PollModel) -> str:
     """post polls."""
     return service_poll.add_poll(question)
-
-
-@router.post("/answer",
-             name="create_answer",
-             status_code=status.HTTP_200_OK,
-             description="Post answers for an especific Poll."
-             )
-async def post_answer(answer: AnswerModel) -> str:
-    """post answers for polls."""
-    return service_poll.add_answer(answer)
