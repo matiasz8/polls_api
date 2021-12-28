@@ -18,3 +18,8 @@ class PollService:
     def add_poll(cls, pool: PollModel) -> str:
         """Save poll on db."""
         return cls.poll_repository.create_poll(pool)
+
+    @classmethod
+    def delete_polls(cls):
+        """Save poll on db."""
+        return cls.poll_repository.delete_polls()

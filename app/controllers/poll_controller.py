@@ -25,3 +25,14 @@ async def get_poll() -> PollListModel:
 async def post_poll(question: PollModel) -> str:
     """post polls."""
     return service_poll.add_poll(question)
+
+
+@router.delete("/deleteAll",
+               name="delete_polls",
+               status_code=status.HTTP_202_ACCEPTED,
+               description="Delete all polls"
+               )
+async def delete_polls() -> str:
+    """delete all polls from database."""
+    service_poll.delete_polls()
+    return "All polls have been deleted."

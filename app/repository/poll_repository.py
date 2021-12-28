@@ -27,3 +27,6 @@ class PollRepository:
 
     def create_poll(self, data: PollModel) -> str:
         return self.client.write(cursor=self.polls_collection, new_document=data.dict())
+
+    def delete_polls(self):
+        return self.client.delete_all(cursor=self.polls_collection)
