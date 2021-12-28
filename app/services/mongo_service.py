@@ -44,8 +44,9 @@ class MongoAPI():
             raise MongoException(message=f"writting error. Details: {ex}")
 
     def delete_all(self, cursor):
+        self.collection = self.cursor[cursor]
         return self.collection.delete_many({})
 
-    def delete_one(self, cursor, id):
+    def delete_one_record(self, cursor, id):
         self.collection = self.cursor[cursor]
-        return self.collection.delete_one({"_id": id})
+        return self.collection.delete_one({"_id": ObjectId(id)})

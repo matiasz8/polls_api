@@ -16,3 +16,9 @@ class AnswerRepository:
 
     def create_answer(self, data: AnswerModel) -> str:
         return self.client.write(cursor=self.answers_collection, new_document=data.dict())
+
+    def delete_answers(self):
+        return self.client.delete_all(cursor=self.answers_collection)
+
+    def delete_answer_by_id(self, answer_id):
+        return self.client.delete_one_record(cursor=self.answers_collection, id=answer_id)

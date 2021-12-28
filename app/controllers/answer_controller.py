@@ -25,3 +25,25 @@ async def get_answer():
 async def post_answer(answer: AnswerModel) -> str:
     """post answers for polls."""
     return service_answer.add_answer(answer)
+
+
+@router.delete("/deleteAll",
+               name="delete_answers",
+               status_code=status.HTTP_202_ACCEPTED,
+               description="Delete all answers"
+               )
+async def delete_answers() -> str:
+    """delete all answers from database."""
+    service_answer.delete_answers()
+    return "All answers have been deleted."
+
+
+@router.delete("/deleteOne",
+               name="delete_answer",
+               status_code=status.HTTP_202_ACCEPTED,
+               description="Delete answer by id"
+               )
+async def delete_answer(answer_id: str) -> str:
+    """delete answer by ID."""
+    service_answer.delete_answer_by_id(answer_id)
+    return f"Answers {answer_id} have been deleted."
